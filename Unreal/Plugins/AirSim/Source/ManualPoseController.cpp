@@ -124,7 +124,7 @@ void UManualPoseController::updateDeltaPosition(float dt)
     FVector input = input_positive_ - inpute_negative_;
     if (!FMath::IsNearlyZero(input.SizeSquared())) {
         if (FMath::IsNearlyZero(acceleration_))
-            last_velocity_ = input * 1000;
+            last_velocity_ = input * 100;
         else
             last_velocity_ += input * (acceleration_ * dt);
         delta_position_ += actor_->GetActorRotation().RotateVector(last_velocity_ * dt);
