@@ -124,7 +124,7 @@ void UManualPoseController::updateDeltaPosition(float dt)
     FVector input = input_positive_ - inpute_negative_;
     if (!FMath::IsNearlyZero(input.SizeSquared())) {
         if (FMath::IsNearlyZero(acceleration_))
-            last_velocity_ = input * 1000;
+            last_velocity_ = input * 30;
         else
             last_velocity_ += input * (acceleration_ * dt);
         delta_position_ += actor_->GetActorRotation().RotateVector(last_velocity_ * dt);
@@ -159,31 +159,31 @@ void UManualPoseController::inputManualDown(float val)
 }
 void UManualPoseController::inputManualLeftYaw(float val)
 {
-    if (!FMath::IsNearlyEqual(val, 0.f))
-        delta_rotation_.Add(0, -val, 0);
+    if (!FMath::IsNearlyEqual(0.1*val, 0.f))
+        delta_rotation_.Add(0, -0.1*val, 0);
 }
 void UManualPoseController::inputManualRightYaw(float val)
 {
-    if (!FMath::IsNearlyEqual(val, 0.f))
-        delta_rotation_.Add(0, val, 0);
+    if (!FMath::IsNearlyEqual(0.1*val, 0.f))
+        delta_rotation_.Add(0, 0.1*val, 0);
 }
 void UManualPoseController::inputManualLeftRoll(float val)
 {
-    if (!FMath::IsNearlyEqual(val, 0.f))
-        delta_rotation_.Add(0, 0, -val);
+    if (!FMath::IsNearlyEqual(0.1*val, 0.f))
+        delta_rotation_.Add(0, 0, -0.1*val);
 }
 void UManualPoseController::inputManualRightRoll(float val)
 {
-    if (!FMath::IsNearlyEqual(val, 0.f))
-        delta_rotation_.Add(0, 0, val);
+    if (!FMath::IsNearlyEqual(0.1*val, 0.f))
+        delta_rotation_.Add(0, 0, 0.1*val);
 }
 void UManualPoseController::inputManualUpPitch(float val)
 {
-    if (!FMath::IsNearlyEqual(val, 0.f))
-        delta_rotation_.Add(val, 0, 0);
+    if (!FMath::IsNearlyEqual(0.1*val, 0.f))
+        delta_rotation_.Add(0.1*val, 0, 0);
 }
 void UManualPoseController::inputManualDownPitch(float val)
 {
-    if (!FMath::IsNearlyEqual(val, 0.f))
-        delta_rotation_.Add(-val, 0, 0);
+    if (!FMath::IsNearlyEqual(0.1*val, 0.f))
+        delta_rotation_.Add(-0.1*val, 0, 0);
 }
